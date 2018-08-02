@@ -12,6 +12,8 @@ namespace NXPTestClient
 {
     public partial class MainWindow : Form
     {
+        //1.声明自适应类实例
+        AutoSizeFormClass asc = new AutoSizeFormClass();
         private delegate void WriteTestLogDelegate(string msg, Color col);
         AsynchronousClient TestClient = null;
         bool bConnect = false;
@@ -22,9 +24,12 @@ namespace NXPTestClient
 
         private void button_Send_Click(object sender, EventArgs e)
         {
+            this.richTextBox_Resulst.Clear();
+
             if (bConnect)
             {
                 string cmd = this.textBox_Cmd.Text;
+                WriteLog(cmd, Color.Gray);
                 int hValue = (cmd.Length + 1) >> 8;
                 int lValue = (cmd.Length + 1) & 0xFF;
                 Byte[] arr = new Byte[] { (Byte)'\n', (Byte)hValue, (Byte)lValue };
@@ -52,6 +57,15 @@ namespace NXPTestClient
         }
         private void MainWindow_Load(object sender, EventArgs e)
         {
+            asc.controllInitializeSize(this);
+            System.Drawing.Rectangle rect = System.Windows.Forms.Screen.PrimaryScreen.Bounds;
+            int h = rect.Height; //高（像素）
+            int w = rect.Width; //宽（像素）
+            this.Width = w;
+            this.Height = h;
+            this.WindowState = FormWindowState.Maximized;
+            this.CenterToScreen();
+
             CreateClient();
         }
 
@@ -72,7 +86,16 @@ namespace NXPTestClient
 
         void DisconnectResult(bool bDisConnect)
         {
+            this.button_Connect.Text = "连接";
             bConnect = false;
+            if(bDisConnect)
+            {
+                WriteLog("断开成功", Color.Green);
+            }
+            else
+            {
+                WriteLog("断开失败", Color.Red);
+            }
             CreateClient();
         }
 
@@ -91,7 +114,12 @@ namespace NXPTestClient
 
         void  RecvData(string strData)
         {
-            WriteLog(strData, Color.Green);
+            string result = strData;
+            result = result.Substring(3);
+            result = result.TrimEnd('\0');
+            result += "\0";
+
+            WriteLog(result, Color.Green);
         }
 
         private void button_Connect_Click(object sender, EventArgs e)
@@ -128,6 +156,11 @@ namespace NXPTestClient
                 this.richTextBox_Resulst.AppendText("\r\n");
                 this.richTextBox_Resulst.ScrollToCaret();
             }
+        }
+
+        private void MainWindow_SizeChanged(object sender, EventArgs e)
+        {
+            asc.controlAutoSize(this);
         }
     }
 }

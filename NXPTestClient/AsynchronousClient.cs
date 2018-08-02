@@ -57,6 +57,7 @@ namespace NXPTestClient
                 DemoCSclient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
                 //connect to the remote endpoint.
+                connectDone.Reset();
                 DemoCSclient.BeginConnect(remoteIP, new AsyncCallback(ConnectCallback), DemoCSclient);
                 connectDone.WaitOne();
             }
@@ -69,6 +70,7 @@ namespace NXPTestClient
         {
             try
             {
+                disConnectDone.Reset();
                 DemoCSclient.BeginDisconnect(true, new AsyncCallback(DisConnectCallback), DemoCSclient);
                 disConnectDone.WaitOne();
             }
@@ -135,13 +137,13 @@ namespace NXPTestClient
 
         private void ConnectCallback(IAsyncResult ar)
         {
+            connectDone.Set();
             try
             {
                 Socket client = (Socket)ar.AsyncState;
                 client.EndConnect(ar);
                 //Console.WriteLine("Socket connected to {0}", client.RemoteEndPoint.ToString());
                 //Signal that the connection has been made.
-                connectDone.Set();
                 this.ConnectEvent(true);
             }
             catch (Exception)

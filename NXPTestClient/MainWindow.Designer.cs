@@ -70,6 +70,7 @@
             this.textBox_IP.Name = "textBox_IP";
             this.textBox_IP.Size = new System.Drawing.Size(243, 33);
             this.textBox_IP.TabIndex = 2;
+            this.textBox_IP.Text = "192.168.251.251";
             // 
             // textBox_Port
             // 
@@ -79,12 +80,13 @@
             this.textBox_Port.Name = "textBox_Port";
             this.textBox_Port.Size = new System.Drawing.Size(130, 33);
             this.textBox_Port.TabIndex = 3;
+            this.textBox_Port.Text = "8008";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(15, 127);
+            this.label3.Location = new System.Drawing.Point(15, 89);
             this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(93, 26);
@@ -93,18 +95,18 @@
             // 
             // textBox_Cmd
             // 
-            this.textBox_Cmd.Location = new System.Drawing.Point(129, 102);
+            this.textBox_Cmd.Location = new System.Drawing.Point(129, 76);
             this.textBox_Cmd.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
             this.textBox_Cmd.Multiline = true;
             this.textBox_Cmd.Name = "textBox_Cmd";
-            this.textBox_Cmd.Size = new System.Drawing.Size(920, 78);
+            this.textBox_Cmd.Size = new System.Drawing.Size(692, 59);
             this.textBox_Cmd.TabIndex = 5;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(15, 283);
+            this.label4.Location = new System.Drawing.Point(15, 192);
             this.label4.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(93, 26);
@@ -113,17 +115,16 @@
             // 
             // richTextBox_Resulst
             // 
-            this.richTextBox_Resulst.Enabled = false;
-            this.richTextBox_Resulst.Location = new System.Drawing.Point(129, 248);
+            this.richTextBox_Resulst.Location = new System.Drawing.Point(129, 192);
             this.richTextBox_Resulst.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
             this.richTextBox_Resulst.Name = "richTextBox_Resulst";
-            this.richTextBox_Resulst.Size = new System.Drawing.Size(920, 183);
+            this.richTextBox_Resulst.Size = new System.Drawing.Size(692, 239);
             this.richTextBox_Resulst.TabIndex = 7;
             this.richTextBox_Resulst.Text = "";
             // 
             // button_Send
             // 
-            this.button_Send.Location = new System.Drawing.Point(504, 196);
+            this.button_Send.Location = new System.Drawing.Point(391, 149);
             this.button_Send.Name = "button_Send";
             this.button_Send.Size = new System.Drawing.Size(120, 33);
             this.button_Send.TabIndex = 8;
@@ -133,9 +134,9 @@
             // 
             // button_Connect
             // 
-            this.button_Connect.Location = new System.Drawing.Point(701, 14);
+            this.button_Connect.Location = new System.Drawing.Point(689, 12);
             this.button_Connect.Name = "button_Connect";
-            this.button_Connect.Size = new System.Drawing.Size(120, 33);
+            this.button_Connect.Size = new System.Drawing.Size(120, 35);
             this.button_Connect.TabIndex = 9;
             this.button_Connect.Text = "连接";
             this.button_Connect.UseVisualStyleBackColor = true;
@@ -145,7 +146,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 26F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1071, 447);
+            this.ClientSize = new System.Drawing.Size(844, 447);
             this.Controls.Add(this.button_Connect);
             this.Controls.Add(this.button_Send);
             this.Controls.Add(this.richTextBox_Resulst);
@@ -162,6 +163,7 @@
             this.Name = "MainWindow";
             this.Text = "NXP测试客户端";
             this.Load += new System.EventHandler(this.MainWindow_Load);
+            this.SizeChanged += new System.EventHandler(this.MainWindow_SizeChanged);
             this.ResumeLayout(false);
             this.PerformLayout();
 
