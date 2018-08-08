@@ -71,6 +71,7 @@ namespace NXPTestClient
 
         void ConnectResult(bool bConnectResult)
         {
+            this.button_Connect.Enabled = true;
             bConnect = bConnectResult;
             if(bConnect)
             {
@@ -86,6 +87,7 @@ namespace NXPTestClient
 
         void DisconnectResult(bool bDisConnect)
         {
+            this.button_Connect.Enabled = true;
             this.button_Connect.Text = "连接";
             bConnect = false;
             if(bDisConnect)
@@ -131,13 +133,15 @@ namespace NXPTestClient
             }
             if(this.button_Connect.Text == "断开")
             {
+                WriteLog("正在断开连接", Color.Green);
                 TestClient.StartDisConnectClient();
             }
             else if (this.button_Connect.Text == "连接")
             {
+                WriteLog("正在连接", Color.Green);
                 TestClient.StartConnectClient(this.textBox_IP.Text, this.textBox_Port.Text);
             }
-                
+            this.button_Connect.Enabled = false;
         }
 
         private void WriteLog(string msg, Color col)
